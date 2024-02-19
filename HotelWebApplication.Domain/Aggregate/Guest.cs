@@ -31,10 +31,15 @@ namespace HotelWebApplication.Domain.Entities
         /// Дата рождения
         /// </summary>
         public DateTime Birthdate { get; set; }
-        
+
         /// <summary>
         /// Идентификатор комнаты проживания
         /// </summary>
         public int RoomId { get; set; }
+        
+        /// <summary>
+        /// Комната проживания гостя
+        /// </summary>
+        public Room Room { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace HotelWebApplication.Domain.Repositories
         /// </summary>
         /// <param name="id">Идентификатор гостя</param>
         /// <returns>Гость, найденный по идентификатору. Возвращает null если гость не найден</returns>
-        Task<Guest> GetByIdAsync(int id);
+        Task<Guest?> GetByIdAsync(int id);
         
         /// <summary>
         /// Асинхронно удалить гостя по идентификатору
@@ -36,5 +36,12 @@ namespace HotelWebApplication.Domain.Repositories
         /// <param name="entity">Параметры, которые будут обновлены у гостя</param>
         /// <param name="id">Идентификатор гостя</param>
         Task UpdateAsync(Guest entity, int id);
+
+        /// <summary>
+        /// Асинхронно получить коллекцию жильцов, которые проживают в комнате с указанным идентификатором
+        /// </summary>
+        /// <param name="roomId">Идентификатор комнаты</param>
+        /// <returns>Коллекция с жильцами комнаты</returns>
+        Task<ICollection<Guest>> GetByRoomIdAsync(int roomId);
     }
 }

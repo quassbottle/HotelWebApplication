@@ -1,9 +1,9 @@
 namespace HotelWebApplication.Domain.Entities
 {
     /// <summary>
-    /// Описание сущности комнаты
+    /// Сущность типа комнаты
     /// </summary>
-    public class Room
+    public class RoomType
     {
         /// <summary>
         /// Идентификатор
@@ -11,13 +11,13 @@ namespace HotelWebApplication.Domain.Entities
         public int Id { get; set; }
         
         /// <summary>
-        /// Название комнаты
+        /// Название типа комнаты
         /// </summary>
         public string Name { get; set; }
         
         /// <summary>
-        /// Идентификатор типа комнаты
+        /// Комнаты данного типа
         /// </summary>
-        public int RoomTypeId { get; set; }
+        public ICollection<Room> Rooms { get; set; }
     }
 }

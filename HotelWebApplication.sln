@@ -4,9 +4,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebApplication", "Hote
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebApplication.Domain", "HotelWebApplication.Domain\HotelWebApplication.Domain.csproj", "{67E92272-A437-4FDB-9FD0-4FF728B43DDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebApplication.Infrastructure", "HotelWebApplication.Infrastructure\HotelWebApplication.Infrastructure.csproj", "{9C17DC1F-5B50-46EA-B6EE-A5BC68738D35}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebApplication.Application", "HotelWebApplication.Application\HotelWebApplication.Application.csproj", "{88750BC1-C375-44E3-9B0D-AEDF35DBDFDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebApplication.Infrastructure", "HotelWebApplication.Infrastructure\HotelWebApplication.Infrastructure.csproj", "{F8A1C9E2-E07A-4357-AD6C-D35E0B33D294}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,13 +22,13 @@ Global
 		{67E92272-A437-4FDB-9FD0-4FF728B43DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67E92272-A437-4FDB-9FD0-4FF728B43DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67E92272-A437-4FDB-9FD0-4FF728B43DDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C17DC1F-5B50-46EA-B6EE-A5BC68738D35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C17DC1F-5B50-46EA-B6EE-A5BC68738D35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C17DC1F-5B50-46EA-B6EE-A5BC68738D35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C17DC1F-5B50-46EA-B6EE-A5BC68738D35}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88750BC1-C375-44E3-9B0D-AEDF35DBDFDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88750BC1-C375-44E3-9B0D-AEDF35DBDFDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88750BC1-C375-44E3-9B0D-AEDF35DBDFDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88750BC1-C375-44E3-9B0D-AEDF35DBDFDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A1C9E2-E07A-4357-AD6C-D35E0B33D294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A1C9E2-E07A-4357-AD6C-D35E0B33D294}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A1C9E2-E07A-4357-AD6C-D35E0B33D294}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A1C9E2-E07A-4357-AD6C-D35E0B33D294}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
