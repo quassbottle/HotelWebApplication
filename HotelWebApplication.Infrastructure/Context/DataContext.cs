@@ -5,18 +5,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace HotelWebApplication.Infrastructure.Context;
 
-public class DataContext : DbContext
+public class DataContext(IConfiguration configuration) : DbContext
 {
-    private readonly IConfiguration _configuration;
-
-    public DataContext(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(_configuration.GetConnectionString("Default"));
+        optionsBuilder.UseNpgsql(configuration.GetConnectionString("Default"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
