@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HotelWebApplication.Infrastructure.Configurations;
 
-public class PreferenceConfiguration : IEntityTypeConfiguration<Preference>
+public class PreferenceConfiguration : IEntityTypeConfiguration<PreferenceAggregate>
 {
-    public void Configure(EntityTypeBuilder<Preference> builder)
+    public void Configure(EntityTypeBuilder<PreferenceAggregate> builder)
     {
         builder.ToTable("Preferences");
 

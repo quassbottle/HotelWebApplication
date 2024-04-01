@@ -2,10 +2,8 @@ using HotelWebApplication.Domain.Repositories;
 using HotelWebApplication.Infrastructure.Context;
 using HotelWebApplication.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
-namespace HotelWebApplication.Infrastructure.Extensions;
+namespace HotelWebApplication.Extensions;
 
 public static class InfrastructureInjectionExtensions
 {

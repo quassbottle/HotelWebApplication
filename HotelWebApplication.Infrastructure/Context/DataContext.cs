@@ -20,8 +20,8 @@ public class DataContext(IConfiguration configuration) : DbContext
         modelBuilder.ApplyConfiguration(new PreferenceConfiguration());
     }
 
-    public DbSet<Guest> Guests { get; set; }
-    public DbSet<Room> Rooms { get; set; }
-    public DbSet<RoomType> RoomTypes { get; set; }
-    public DbSet<Preference> Preferences { get; set; }
+    public DbSet<GuestAggregate> Guests { get; set; }
+    public DbSet<RoomAggregate> Rooms { get; set; }
+    public DbSet<RoomTypeAggregate> RoomTypes { get; set; }
+    public DbSet<PreferenceAggregate> Preferences { get; set; }
 }

@@ -1,4 +1,5 @@
 using HotelWebApplication.Application.Dto;
+using HotelWebApplication.Application.Dto.Mappers;
 using HotelWebApplication.Application.Services.Interfaces;
 using HotelWebApplication.Domain.Entities;
 using HotelWebApplication.Domain.Exceptions.Guest;
@@ -16,14 +17,7 @@ public class GuestService(IGuestRepository guestRepository, IRoomRepository room
             throw new RoomNotFoundException("Room with such id doesn't exist.");
         }
         
-        return await guestRepository.CreateAsync(new Guest
-        {
-            Name = guest.Name,
-            Surname = guest.Surname,
-            Patronymic = guest.Patronymic,
-            Birthdate = guest.Birthdate,
-            RoomId = guest.RoomId,
-        });
+        return await guestRepository.CreateAsync(guest.ToAggregate());
     }
 
     public async Task<GuestDto> GetByIdAsync(int id)
@@ -35,15 +29,7 @@ public class GuestService(IGuestRepository guestRepository, IRoomRepository room
             throw new GuestNotFoundException("Guest with such id doesn't exist");
         }
 
-        return new GuestDto
-        {
-            Name = aggregate.Name,
-            Surname = aggregate.Surname,
-            Birthdate = aggregate.Birthdate,
-            Id = aggregate.Id,
-            Patronymic = aggregate.Patronymic,
-            RoomId = aggregate.RoomId,
-        };
+        return aggregate.ToDto();
     }
 
     public async Task<ICollection<GuestDto>> GetByRoomIdAsync(int roomId)
@@ -55,14 +41,6 @@ public class GuestService(IGuestRepository guestRepository, IRoomRepository room
 
         var aggregate = await guestRepository.GetByRoomIdAsync(roomId);
 
-        return aggregate.Select(guest => new GuestDto
-        {
-            Name = guest.Name,
-            Surname = guest.Surname,
-            Birthdate = guest.Birthdate,
-            Id = guest.Id,
-            Patronymic = guest.Patronymic,
-            RoomId = guest.RoomId,
-        }).ToList();
+        return aggregate.Select(GuestMapper.ToDto).ToList();
     }
 }

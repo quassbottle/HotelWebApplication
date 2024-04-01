@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HotelWebApplication.Infrastructure.Configurations;
 
-public class RoomTypeConfiguration : IEntityTypeConfiguration<RoomType>
+public class RoomTypeConfiguration : IEntityTypeConfiguration<RoomTypeAggregate>
 {
-    public void Configure(EntityTypeBuilder<RoomType> builder)
+    public void Configure(EntityTypeBuilder<RoomTypeAggregate> builder)
     {
         builder.ToTable("RoomTypes");
 
@@ -15,7 +15,7 @@ public class RoomTypeConfiguration : IEntityTypeConfiguration<RoomType>
 
         builder
             .HasMany(rt => rt.Rooms)
-            .WithOne(r => r.RoomType)
+            .WithOne(r => r.RoomTypeAggregate)
             .HasForeignKey(r => r.RoomTypeId);
     }
 }

@@ -3,7 +3,7 @@ namespace HotelWebApplication.Domain.Entities
     /// <summary>
     /// Сущность типа комнаты
     /// </summary>
-    public class RoomType
+    public class RoomTypeAggregate
     {
         /// <summary>
         /// Идентификатор
@@ -18,6 +18,6 @@ namespace HotelWebApplication.Domain.Entities
         /// <summary>
         /// Комнаты данного типа
         /// </summary>
-        public ICollection<Room> Rooms { get; set; }
+        public ICollection<RoomAggregate> Rooms { get; set; }
     }
 }

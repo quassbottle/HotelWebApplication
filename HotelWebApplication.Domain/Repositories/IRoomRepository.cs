@@ -13,7 +13,7 @@ namespace HotelWebApplication.Domain.Repositories
         /// </summary>
         /// <param name="id">Идентификатор комнаты</param>
         /// <returns>Комната, найденная по идентификатору. Возвращает null если комната не найдена</returns>
-        Task<Room?> GetByIdAsync(int id);
+        Task<RoomAggregate?> GetByIdAsync(int id);
         
         /// <summary>
         /// Асинхронно удалить комнату по идентификатору
@@ -26,14 +26,14 @@ namespace HotelWebApplication.Domain.Repositories
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>Идентификатор созданного комнаты</returns>
-        Task<int> CreateAsync(Room entity);
+        Task<int> CreateAsync(RoomAggregate entity);
         
         /// <summary>
         /// Асинхронное обновить комнату по идентификатору
         /// </summary>
         /// <param name="entity">Параметры, которые будут обновлены у комнаты</param>
         /// <param name="id">Идентификатор комнаты</param>
-        Task UpdateAsync(Room entity, int id);
+        Task UpdateAsync(RoomAggregate entity, int id);
 
         /// <summary>
         /// Асинхронно проверить, существует ли комната с указанным идентификатором

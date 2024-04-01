@@ -3,7 +3,7 @@ namespace HotelWebApplication.Domain.Entities
     /// <summary>
     /// Описание сущности предпочтений гостей 
     /// </summary>
-    public class Preference
+    public class PreferenceAggregate
     {
         /// <summary>
         /// Идентификатор предпочтения
@@ -18,6 +18,6 @@ namespace HotelWebApplication.Domain.Entities
         /// <summary>
         /// Комнаты с данной особенностью
         /// </summary>
-        public ICollection<Room> Rooms { get; set; }
+        public ICollection<RoomAggregate> Rooms { get; set; }
     }
 }

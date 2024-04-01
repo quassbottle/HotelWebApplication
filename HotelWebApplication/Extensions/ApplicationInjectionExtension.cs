@@ -1,8 +1,7 @@
 using HotelWebApplication.Application.Services;
 using HotelWebApplication.Application.Services.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace HotelWebApplication.Application.Extensions;
+namespace HotelWebApplication.Extensions;
 
 public static class ApplicationInjectionExtension
 {

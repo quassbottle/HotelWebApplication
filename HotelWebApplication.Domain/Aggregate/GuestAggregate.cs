@@ -5,7 +5,7 @@ namespace HotelWebApplication.Domain.Entities
     /// <summary>
     /// Описание сущности гостя
     /// </summary>
-    public class Guest
+    public class GuestAggregate
     {
         /// <summary>
         /// Идентификатор
@@ -40,6 +40,6 @@ namespace HotelWebApplication.Domain.Entities
         /// <summary>
         /// Комната проживания гостя
         /// </summary>
-        public Room Room { get; set; }
+        public RoomAggregate RoomAggregate { get; set; }
     }
 }

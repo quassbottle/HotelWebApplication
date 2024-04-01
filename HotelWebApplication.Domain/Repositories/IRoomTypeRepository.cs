@@ -10,12 +10,12 @@ namespace HotelWebApplication.Domain.Repositories
         /// </summary>
         /// <param name="id">Идентификатор типа комнаты</param>
         /// <returns></returns>
-        Task<RoomType?> GetByIdAsync(int id);
+        Task<RoomTypeAggregate?> GetByIdAsync(int id);
 
         /// <summary>
         /// Асинхронно получить все типы комнат
         /// </summary>
         /// <returns>Коллекция, содержащиая доступные типы комнат</returns>
-        Task<ICollection<RoomType>> GetAllAsync();
+        Task<ICollection<RoomTypeAggregate>> GetAllAsync();
     }
 }

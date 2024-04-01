@@ -3,7 +3,7 @@ namespace HotelWebApplication.Domain.Entities
     /// <summary>
     /// Описание сущности комнаты
     /// </summary>
-    public class Room
+    public class RoomAggregate
     {
         /// <summary>
         /// Идентификатор
@@ -28,16 +28,16 @@ namespace HotelWebApplication.Domain.Entities
         /// <summary>
         /// Тип комнаты
         /// </summary>
-        public RoomType RoomType { get; set; }
+        public RoomTypeAggregate RoomTypeAggregate { get; set; }
         
         /// <summary>
         /// Особенности комнаты
         /// </summary>
-        public ICollection<Preference> Preferences { get; set; }
+        public ICollection<PreferenceAggregate> Preferences { get; set; }
         
         /// <summary>
         /// Жильцы комнаты
         /// </summary>
-        public ICollection<Guest> Guests { get; set; }
+        public ICollection<GuestAggregate> Guests { get; set; }
     }
 }

@@ -7,13 +7,13 @@ namespace HotelWebApplication.Infrastructure.Repositories;
 
 public class RoomTypeRepository(DataContext context) : IRoomTypeRepository
 {
-    public async Task<RoomType?> GetByIdAsync(int id)
+    public async Task<RoomTypeAggregate?> GetByIdAsync(int id)
     {
         var candidate = await context.RoomTypes.FindAsync(id);
         return candidate;
     }
 
-    public async Task<ICollection<RoomType>> GetAllAsync()
+    public async Task<ICollection<RoomTypeAggregate>> GetAllAsync()
     {
         return await context.RoomTypes.ToListAsync();
     }

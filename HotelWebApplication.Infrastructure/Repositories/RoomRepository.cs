@@ -7,7 +7,7 @@ namespace HotelWebApplication.Infrastructure.Repositories;
 
 public class RoomRepository(DataContext context) : IRoomRepository
 {
-    public async Task<Room?> GetByIdAsync(int id)
+    public async Task<RoomAggregate?> GetByIdAsync(int id)
     {
         var candidate = await context.Rooms.FindAsync(id);
         return candidate;
@@ -20,19 +20,19 @@ public class RoomRepository(DataContext context) : IRoomRepository
             throw new RoomNotFoundException("Room with such id doesn't exist.");
         }
 
-        context.Rooms.Remove(new Room { Id = id });
+        context.Rooms.Remove(new RoomAggregate { Id = id });
         
         await context.SaveChangesAsync();
     }
 
-    public async Task<int> CreateAsync(Room entity)
+    public async Task<int> CreateAsync(RoomAggregate entity)
     {
         var entry = await context.Rooms.AddAsync(entity);
         await context.SaveChangesAsync();
         return entry.Entity.Id;
     }
 
-    public async Task UpdateAsync(Room entity, int id)
+    public async Task UpdateAsync(RoomAggregate entity, int id)
     {
         entity.Id = id;
         context.Update(entity);

@@ -1,5 +1,4 @@
-using HotelWebApplication.Application.Extensions;
-using HotelWebApplication.Infrastructure.Extensions;
+using HotelWebApplication.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
