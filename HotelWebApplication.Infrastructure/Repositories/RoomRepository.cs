@@ -33,21 +33,16 @@ public class RoomRepository(DataContext context) : IRoomRepository
 
     public async Task<int> CreateAsync(RoomAggregate entity)
     {
-        var pomogite = await context.Preferences.ToListAsync();
-
-        var result = new List<PreferenceAggregate>();
-        foreach (var a in pomogite)
-        {
-            if (entity.Preferences.FirstOrDefault(p => p.Id == a.Id) != null)
-            {
-                result.Add(a);
-            }
-        }
-
-        entity.Preferences = result;
+        var preferenceIds = entity.Preferences.Select(p => p.Id);
+        var matchingPreferences = await context.Preferences
+            .Where(p => preferenceIds.Contains(p.Id))
+            .ToListAsync();
         
+        entity.Preferences = matchingPreferences;
+
         var entry = await context.Rooms.AddAsync(entity);
         await context.SaveChangesAsync();
+    
         return entry.Entity.Id;
     }
 
