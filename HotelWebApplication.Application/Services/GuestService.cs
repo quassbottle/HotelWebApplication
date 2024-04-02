@@ -16,6 +16,13 @@ public class GuestService(IGuestRepository guestRepository, IRoomRepository room
         {
             throw new RoomNotFoundException("Room with such id doesn't exist.");
         }
+
+        var room = await roomRepository.GetByIdAsync(guest.RoomId);
+
+        if (room.Guests.Count + 1 > room.Capacity)
+        {
+            throw new RoomIsFullException(room.Id);
+        }
         
         return await guestRepository.CreateAsync(guest.ToAggregate());
     }
