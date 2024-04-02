@@ -2,8 +2,7 @@ using HotelWebApplication.Application.Dto;
 
 namespace HotelWebApplication.Application.Services.Interfaces;
 
-public interface IRoomService
+public interface IRoomTypeService
 {
-    Task<RoomDto> GetByIdAsync(int id);
-    Task<int> CreateAsync(RoomDto dto);
+    Task<ICollection<RoomTypeDto>> GetAllAsync();
 }

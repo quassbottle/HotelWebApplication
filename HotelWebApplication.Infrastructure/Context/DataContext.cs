@@ -1,5 +1,6 @@
 using HotelWebApplication.Domain.Entities;
 using HotelWebApplication.Infrastructure.Configurations;
+using HotelWebApplication.Infrastructure.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -18,6 +19,9 @@ public class DataContext(IConfiguration configuration) : DbContext
         modelBuilder.ApplyConfiguration(new RoomConfiguration());
         modelBuilder.ApplyConfiguration(new RoomTypeConfiguration());
         modelBuilder.ApplyConfiguration(new PreferenceConfiguration());
+
+        modelBuilder.AddPreferences();
+        modelBuilder.AddRoomTypes();
     }
 
     public DbSet<GuestAggregate> Guests { get; set; }

@@ -2,6 +2,7 @@ using HotelWebApplication.Domain.Entities;
 using HotelWebApplication.Domain.Exceptions.Room;
 using HotelWebApplication.Domain.Repositories;
 using HotelWebApplication.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelWebApplication.Infrastructure.Repositories;
 
@@ -9,7 +10,12 @@ public class RoomRepository(DataContext context) : IRoomRepository
 {
     public async Task<RoomAggregate?> GetByIdAsync(int id)
     {
-        var candidate = await context.Rooms.FindAsync(id);
+        var candidate = await context.Rooms
+            .Include(r => r.Preferences)
+            .Include(r => r.Guests)
+            .Include(r => r.RoomTypeAggregate)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(r => r.Id == id);
         return candidate;
     }
 
@@ -27,6 +33,19 @@ public class RoomRepository(DataContext context) : IRoomRepository
 
     public async Task<int> CreateAsync(RoomAggregate entity)
     {
+        var pomogite = await context.Preferences.ToListAsync();
+
+        var result = new List<PreferenceAggregate>();
+        foreach (var a in pomogite)
+        {
+            if (entity.Preferences.FirstOrDefault(p => p.Id == a.Id) != null)
+            {
+                result.Add(a);
+            }
+        }
+
+        entity.Preferences = result;
+        
         var entry = await context.Rooms.AddAsync(entity);
         await context.SaveChangesAsync();
         return entry.Entity.Id;

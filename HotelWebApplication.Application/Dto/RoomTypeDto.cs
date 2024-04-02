@@ -7,7 +7,6 @@ public class RoomTypeDto
     /// <summary>
     /// Идентификатор
     /// </summary>
-    [JsonIgnore]
     public int Id { get; set; }
     
     /// <summary>

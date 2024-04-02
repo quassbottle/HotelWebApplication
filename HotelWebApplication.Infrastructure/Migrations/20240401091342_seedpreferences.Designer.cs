@@ -3,6 +3,7 @@ using System;
 using HotelWebApplication.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HotelWebApplication.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240401091342_seedpreferences")]
+    partial class seedpreferences
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,7 +118,7 @@ namespace HotelWebApplication.Infrastructure.Migrations
                         new
                         {
                             Id = 9,
-                            Value = "Общая ванная комната"
+                            Value = "Джакузи"
                         });
                 });
 
@@ -159,28 +162,6 @@ namespace HotelWebApplication.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RoomTypes", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Эконом"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Стандарт"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Люкс"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Президент"
-                        });
                 });
 
             modelBuilder.Entity("PreferenceAggregateRoomAggregate", b =>

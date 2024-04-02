@@ -1,7 +1,7 @@
-using HotelWebApplication.Application.Contracts.Guest;
 using HotelWebApplication.Application.Dto;
 using HotelWebApplication.Application.Services.Interfaces;
 using HotelWebApplication.Controllers.Shared;
+using HotelWebApplication.Models.Guest;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelWebApplication.Controllers;

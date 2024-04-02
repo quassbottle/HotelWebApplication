@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace HotelWebApplication.Application.Dto;
 
 public class PreferenceDto

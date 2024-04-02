@@ -1,5 +1,8 @@
-namespace HotelWebApplication.Application.Contracts.Guest;
+namespace HotelWebApplication.Models.Guest;
 
+/// <summary>
+/// Запрос на создание гостя
+/// </summary>
 public class GuestCreateRequest
 {
     /// <summary>

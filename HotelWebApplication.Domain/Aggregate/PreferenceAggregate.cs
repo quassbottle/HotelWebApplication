@@ -18,6 +18,6 @@ namespace HotelWebApplication.Domain.Entities
         /// <summary>
         /// Комнаты с данной особенностью
         /// </summary>
-        public ICollection<RoomAggregate> Rooms { get; set; }
+        public ICollection<RoomAggregate?> Rooms { get; set; }
     }
 }
