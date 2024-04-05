@@ -21,5 +21,6 @@ public static class InfrastructureInjectionExtensions
         services.AddScoped<IGuestRepository, GuestRepository>();
         services.AddScoped<IRoomRepository, RoomRepository>();
         services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
+        services.AddScoped<IPreferenceRepository, PreferenceRepository>();
     }
 }

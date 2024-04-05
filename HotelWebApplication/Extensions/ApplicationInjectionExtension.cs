@@ -10,5 +10,6 @@ public static class ApplicationInjectionExtension
         services.AddScoped<IGuestService, GuestService>();
         services.AddScoped<IRoomService, RoomService>();
         services.AddScoped<IRoomTypeService, RoomTypeService>();
+        services.AddScoped<IPreferenceService, PreferenceService>();
     }
 }
