@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using HotelWebApplication.Domain.Entities;
 
@@ -41,5 +42,13 @@ namespace HotelWebApplication.Domain.Repositories
         /// <param name="id"></param>
         /// <returns>Существует ли комната с указанным идентификатором</returns>
         Task<bool> ExistsByIdAsync(int id);
+
+        Task<ICollection<RoomAggregate>> GetAllAsync();
+
+        Task<ICollection<RoomAggregate>> GetByPreferencesAsync(ICollection<PreferenceAggregate> preferences);
+
+        Task<ICollection<RoomAggregate>> WhereAsync(Expression<Func<RoomAggregate, bool>> predicate);
+        
+        Task<ICollection<RoomAggregate>> SelectAsync<TResult>(Expression<Func<RoomAggregate, TResult>> predicate);
     }
 }

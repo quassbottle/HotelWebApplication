@@ -31,4 +31,10 @@ public class RoomController(IGuestService guestService, IRoomService roomService
             Preferences = request.Preferences.Select(preferenceId => new PreferenceDto { Id = preferenceId }).ToList()
         }));
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> Filter([FromQuery] ICollection<int> preference)
+    {
+        return Ok(await roomService.GetByPreferencesAsync(preference));
+    }
 }
