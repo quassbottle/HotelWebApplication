@@ -33,8 +33,8 @@ public class RoomController(IGuestService guestService, IRoomService roomService
     }
     
     [HttpGet]
-    public async Task<IActionResult> Filter([FromQuery] ICollection<int> preference)
+    public async Task<IActionResult> Filter([FromQuery] ICollection<int> preference, [FromQuery] ICollection<int> roomType)
     {
-        return Ok(await roomService.GetByPreferencesAsync(preference));
+        return Ok(await roomService.FilterAsync(roomType, preference));
     }
 }
