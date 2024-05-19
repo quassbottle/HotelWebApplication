@@ -7,9 +7,13 @@ namespace HotelWebApplication.Common.Csv;
 
 public class CsvExporter<T> : ICsvExporter<T>
 {
-    public Task<ICollection<string>> SaveAsync(ICollection<T> items)
+    public Task<ICollection<string>> SaveAsync(ICollection<T> items, string delimiter = ";")
     {
         ICollection<string> csvItems = new List<string>();
+
+        csvItems.Add(String.Join(delimiter, typeof(T).GetProperties()
+            .Where(prop => prop.GetCustomAttribute<CsvSerializeAttribute>() is not null)
+            .Select(prop => prop.Name)));
         
         foreach (var item in items)
         {
@@ -29,7 +33,7 @@ public class CsvExporter<T> : ICsvExporter<T>
                 row.Add(utf8);
             }
             
-            csvItems.Add(String.Join(',', row));
+            csvItems.Add(String.Join(delimiter, row));
         }
 
         return Task.FromResult(csvItems);
