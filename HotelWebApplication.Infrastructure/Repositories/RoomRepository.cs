@@ -68,40 +68,11 @@ public class RoomRepository(DataContext context) : IRoomRepository
             .AsNoTracking()
             .ToListAsync();
     }
-
-    public async Task<ICollection<RoomAggregate>> GetByPreferencesAsync(ICollection<PreferenceAggregate> preferences)
+    
+    public async Task ClearAsync()
     {
-        return await context.Rooms
-            .Include(r => r.Preferences)
-            .AsNoTracking()
-            .Where(r => r.Preferences.Select(p => p.Id).All(preferences.Select(g => g.Id).Contains))
-            .ToListAsync();
-    }
-
-    public async Task<ICollection<RoomAggregate>> WhereAsync(Expression<Func<RoomAggregate, bool>> predicate)
-    {
-        return await context.Rooms
-            .Include(r => r.Preferences)
-            .Include(r => r.Guests)
-            .Include(r => r.RoomTypeAggregate)
-            .AsNoTracking()
-            .Where(predicate)
-            .ToListAsync();
-    }
-
-    public Task<ICollection<RoomAggregate>> SelectAsync<TResult>(Expression<Func<RoomAggregate, TResult>> predicate)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<ICollection<RoomAggregate>> SelectAsync(Expression<Func<RoomAggregate, RoomAggregate>> predicate)
-    {
-        return await context.Rooms
-            .Include(r => r.Preferences)
-            .Include(r => r.Guests)
-            .Include(r => r.RoomTypeAggregate)
-            .AsNoTracking()
-            .Select(predicate)
-            .ToListAsync();
+        await context.Database.ExecuteSqlAsync($"delete from \"RoomPreference\"");
+        await context.Database.ExecuteSqlAsync($"delete from \"Rooms\"");
+        await context.SaveChangesAsync();
     }
 }

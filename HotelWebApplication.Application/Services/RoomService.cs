@@ -73,4 +73,16 @@ public class RoomService(IRoomRepository repository) : IRoomService
 
         return id;
     }
+
+    public async Task ClearAsync()
+    {
+        await repository.ClearAsync();
+    }
+
+    public async Task<ICollection<RoomDto>> GetAllAsync()
+    {
+        var all = await repository.GetAllAsync();
+
+        return all.Select(RoomMapper.ToDto).ToList();
+    }
 }

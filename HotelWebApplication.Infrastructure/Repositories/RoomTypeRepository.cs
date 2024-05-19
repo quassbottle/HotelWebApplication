@@ -9,7 +9,7 @@ public class RoomTypeRepository(DataContext context) : IRoomTypeRepository
 {
     public async Task<RoomTypeAggregate?> GetByIdAsync(int id)
     {
-        var candidate = await context.RoomTypes.FindAsync(id);
+        var candidate = await context.RoomTypes.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
         return candidate;
     }
 

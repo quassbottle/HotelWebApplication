@@ -43,5 +43,13 @@ namespace HotelWebApplication.Domain.Repositories
         /// <param name="roomId">Идентификатор комнаты</param>
         /// <returns>Коллекция с жильцами комнаты</returns>
         Task<ICollection<GuestAggregate>> GetByRoomIdAsync(int roomId);
+
+        Task<ICollection<GuestAggregate>> GetAllAsync();
+ 
+        /// <summary>
+        /// Удалить всех гостей
+        /// </summary>
+        /// <returns></returns>
+        Task ClearAsync();
     }
 }

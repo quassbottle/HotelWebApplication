@@ -1,4 +1,5 @@
 using HotelWebApplication.Application.Dto;
+using HotelWebApplication.Application.Serializers.Interfaces;
 using HotelWebApplication.Application.Services.Interfaces;
 using HotelWebApplication.Controllers.Shared;
 using HotelWebApplication.Models.Room;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HotelWebApplication.Controllers;
 
-public class RoomController(IGuestService guestService, IRoomService roomService) : ApiV1Controller
+public class RoomController(IGuestService guestService, IRoomService roomService, IRoomCsvSerializer roomCsvSerializer) : ApiV1Controller
 {
     [HttpGet("{id}/Guests")]
     public async Task<IActionResult> GetGuestsOfRoom(int id)
@@ -36,5 +37,20 @@ public class RoomController(IGuestService guestService, IRoomService roomService
     public async Task<IActionResult> Filter([FromQuery] ICollection<int> preference, [FromQuery] ICollection<int> roomType)
     {
         return Ok(await roomService.FilterAsync(roomType, preference));
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> Drop()
+    {
+        await roomService.ClearAsync();
+        return Ok();
+    }
+    
+    [HttpGet("Csv")]
+    public async Task<IActionResult> GetCsv()
+    {
+        var rooms = await roomService.GetAllAsync();
+
+        return File(await roomCsvSerializer.SaveCsv(rooms), "text/csv", $"Rooms {DateTime.Now}.csv");
     }
 }

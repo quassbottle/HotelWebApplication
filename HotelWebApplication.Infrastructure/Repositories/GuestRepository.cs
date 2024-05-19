@@ -1,5 +1,6 @@
 using HotelWebApplication.Domain.Entities;
 using HotelWebApplication.Domain.Exceptions.Guest;
+using HotelWebApplication.Domain.Exceptions.Room;
 using HotelWebApplication.Domain.Repositories;
 using HotelWebApplication.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -10,13 +11,14 @@ public class GuestRepository(DataContext context) : IGuestRepository
 {
     public async Task<GuestAggregate?> GetByIdAsync(int id)
     {
-        var candidate = await context.Guests.FindAsync(id);
+        var candidate = await context.Guests.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
         return candidate;
     }
 
     public async Task DeleteByIdAsync(int id)
     {
-        if (await context.Guests.FindAsync(id) is null)
+        var candidate = await context.Guests.FindAsync(id);
+        if (candidate is null)
         {
             throw new GuestNotFoundException("Guest with such id doesn't exist.");
         }
@@ -35,13 +37,34 @@ public class GuestRepository(DataContext context) : IGuestRepository
 
     public async Task UpdateAsync(GuestAggregate entity, int id)
     {
-        entity.Id = id;
-        context.Update(entity);
+        context.Guests.Update(new GuestAggregate
+        {
+            Id = id,
+            Birthdate = entity.Birthdate,
+            Name = entity.Name,
+            Patronymic = entity.Patronymic,
+            Surname = entity.Surname,
+            RoomId = entity.RoomId
+        });
         await context.SaveChangesAsync();
     }
 
     public async Task<ICollection<GuestAggregate>> GetByRoomIdAsync(int roomId)
     {
         return await context.Guests.Where(guest => guest.RoomId == roomId).ToListAsync();
+    }
+
+    public async Task<ICollection<GuestAggregate>> GetAllAsync()
+    {
+        return await context.Guests
+            .Include(g => g.RoomAggregate)
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
+    public async Task ClearAsync()
+    {
+        await context.Database.ExecuteSqlAsync($"delete from \"Guests\"");
+        await context.SaveChangesAsync();
     }
 }

@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebApplication.Infrast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebApplication.Models", "HotelWebApplication.Models\HotelWebApplication.Models.csproj", "{268EA16A-1884-4E0C-8146-891C252CA7D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebApplication.Common", "HotelWebApplication.Common\HotelWebApplication.Common.csproj", "{C26E3A78-AFA6-4027-8241-AB36E94F45B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{268EA16A-1884-4E0C-8146-891C252CA7D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{268EA16A-1884-4E0C-8146-891C252CA7D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{268EA16A-1884-4E0C-8146-891C252CA7D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C26E3A78-AFA6-4027-8241-AB36E94F45B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C26E3A78-AFA6-4027-8241-AB36E94F45B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C26E3A78-AFA6-4027-8241-AB36E94F45B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C26E3A78-AFA6-4027-8241-AB36E94F45B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

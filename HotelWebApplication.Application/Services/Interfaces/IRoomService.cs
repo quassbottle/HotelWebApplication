@@ -10,4 +10,6 @@ public interface IRoomService
     Task<ICollection<RoomDto>> MatchByRoomTypeAsync(ICollection<int> roomType);
     Task<ICollection<RoomDto>> FilterAsync(ICollection<int> roomType, ICollection<int> preference);
     Task<int> CreateAsync(RoomDto dto);
+    Task ClearAsync();
+    Task<ICollection<RoomDto>> GetAllAsync();
 }

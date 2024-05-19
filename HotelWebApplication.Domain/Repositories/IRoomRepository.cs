@@ -43,12 +43,16 @@ namespace HotelWebApplication.Domain.Repositories
         /// <returns>Существует ли комната с указанным идентификатором</returns>
         Task<bool> ExistsByIdAsync(int id);
 
+        /// <summary>
+        /// Получить все комнаты асинхронно
+        /// </summary>
+        /// <returns></returns>
         Task<ICollection<RoomAggregate>> GetAllAsync();
 
-        Task<ICollection<RoomAggregate>> GetByPreferencesAsync(ICollection<PreferenceAggregate> preferences);
-
-        Task<ICollection<RoomAggregate>> WhereAsync(Expression<Func<RoomAggregate, bool>> predicate);
-        
-        Task<ICollection<RoomAggregate>> SelectAsync<TResult>(Expression<Func<RoomAggregate, TResult>> predicate);
+        /// <summary>
+        /// Удалить все комнаты
+        /// </summary>
+        /// <returns></returns>
+        Task ClearAsync();
     }
 }

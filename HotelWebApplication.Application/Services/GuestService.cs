@@ -10,7 +10,7 @@ namespace HotelWebApplication.Application.Services;
 
 public class GuestService(IGuestRepository guestRepository, IRoomRepository roomRepository) : IGuestService
 {
-    public async Task<int> RegisterAsync(GuestDto guest)
+    public async Task<int> CreateAsync(GuestDto guest)
     {
         if (!await roomRepository.ExistsByIdAsync(guest.RoomId))
         {
@@ -25,6 +25,11 @@ public class GuestService(IGuestRepository guestRepository, IRoomRepository room
         }
         
         return await guestRepository.CreateAsync(guest.ToAggregate());
+    }
+
+    public async Task DeleteAsync(int guestId)
+    {
+        await guestRepository.DeleteByIdAsync(guestId);
     }
 
     public async Task<GuestDto> GetByIdAsync(int id)
@@ -47,6 +52,30 @@ public class GuestService(IGuestRepository guestRepository, IRoomRepository room
         }
 
         var aggregate = await guestRepository.GetByRoomIdAsync(roomId);
+
+        return aggregate.Select(GuestMapper.ToDto).ToList();
+    }
+
+    public async Task ClearAsync()
+    {
+        await guestRepository.ClearAsync();
+    }
+
+    public async Task UpdateAsync(int id, GuestDto dto)
+    {
+        var aggregate = await guestRepository.GetByIdAsync(id);
+
+        if (aggregate is null)
+        {
+            throw new GuestNotFoundException("Guest with such id doesn't exist");
+        }
+
+        await guestRepository.UpdateAsync(dto.ToAggregate(), id);
+    }
+
+    public async Task<ICollection<GuestDto>> GetAllAsync()
+    {
+        var aggregate = await guestRepository.GetAllAsync();
 
         return aggregate.Select(GuestMapper.ToDto).ToList();
     }

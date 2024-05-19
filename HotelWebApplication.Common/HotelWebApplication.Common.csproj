@@ -8,8 +8,4 @@
         <LangVersion>12</LangVersion>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\HotelWebApplication.Common\HotelWebApplication.Common.csproj" />
-    </ItemGroup>
-
 </Project>
